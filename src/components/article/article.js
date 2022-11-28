@@ -171,4 +171,3 @@ const articles = document.querySelector(".articles");
 data.forEach(articledata =>{
   articles.append(articleMaker(articledata))
 })
-console.log(articleMaker())

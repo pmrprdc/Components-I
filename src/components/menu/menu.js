@@ -1,3 +1,4 @@
+
 import './Menu.less'
 
 // This is the data we will be using, study it but don't change anything, yet.
@@ -9,6 +10,33 @@ let menuItems = [
   'Music',
   'Log Out'
 ];
+
+
+function menuMaker(menuItems){
+const menuwrapper = document.createElement("div");
+menuwrapper.classList.add("menu");
+
+const listDiv = document.createElement("ul");
+menuwrapper.append(listDiv);
+
+menuItems.forEach((item)=>{
+const listItem = document.createElement("li");
+listItem.innerText = item;
+
+listDiv.append(listItem);
+
+})
+
+
+const menubutton = document.querySelector(".menu-button");
+menubutton.addEventListener("click", ()=>{
+  menuwrapper.classList.toggle("menu--open")
+})
+
+return menuwrapper;
+
+}
+
 
 /*
   Step 1: Write a component called 'menuMaker' to create a menu like the markup below:
@@ -32,3 +60,12 @@ let menuItems = [
 
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
 */
+
+
+
+const header = document.querySelector(".header");
+
+const createdMenu = menuMaker(menuItems);
+
+
+header.append(createdMenu);
