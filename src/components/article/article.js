@@ -87,6 +87,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Professional Software Development in 2023',
+    date: 'Jan 1st, 2023',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -94,6 +110,7 @@ const data = [
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
   and returns a DOM node looking like the one below:
+
 
   <div class="article">
     <h2>{title of the article}</h2>
@@ -115,3 +132,43 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+
+
+function articleMaker(object) {
+const divrapper = document.createElement("div");
+divrapper.classList.add("article");
+const titlewrapper = document.createElement("h2");
+titlewrapper.innerText = object.title;
+const dateparagraph = document.createElement("p");
+dateparagraph.classList.add("date");
+dateparagraph.innerText = object.date;
+const paragraph1 =document.createElement("p");
+paragraph1.innerText = object.firstParagraph;
+const paragraph2 =document.createElement("p");
+paragraph2.innerText = object.secondParagraph;
+const paragraph3 =document.createElement("p");
+paragraph3.innerText = object.thirdParagraph;
+const span = document.createElement("span");
+span.innerText = "+";
+span.classList.add("expandButton")
+span.addEventListener("click",(e)=>{
+  divrapper.classList.toggle("article-open");
+})
+
+
+divrapper.append(titlewrapper,dateparagraph, paragraph1,paragraph2, paragraph3, span );
+
+
+return divrapper;
+
+}
+
+
+
+const articles = document.querySelector(".articles");
+data.forEach(articledata =>{
+  articles.append(articleMaker(articledata))
+})
+console.log(articleMaker())
